@@ -1,11 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const PORT = process.env.PORT || 1999
-const SERVER = "http://localhost";
+const port = process.env.PORT || 1999
+const server = "http://localhost";
 
 const app = express();
-{console.log("test", process.env.PORT)}
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -13,8 +14,8 @@ app.use(cors());
 const { mongoConnect } = require('./utils/mongoDB/connection');
 mongoConnect();
 
-app.use('/', require('./routes'));
+app.use('/api', require('./routes'));
 
-app.listen(PORT, () => {
-    console.log(`Application is running at ${SERVER}:${PORT}`);
+app.listen(port, () => {
+    console.log(`Application is running at ${server}:${port}`);
 })
