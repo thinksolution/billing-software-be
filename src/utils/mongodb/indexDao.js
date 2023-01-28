@@ -1,19 +1,7 @@
 const RegistrationModel = require('../mongodb/model/registration.model');
 const { decryptText } = require('../helper/bcrypt.decrypt');
 
-const registerCompany = async (data) => {
-    try {
-        let isCompanyExist = await RegistrationModel.find({ "phoneNumber": data.phoneNumber })
-        if (isCompanyExist.length > 0) {
-            return { "exist": "User already exist" };
-        } else {
-            let companyData = new RegistrationModel(data)
-            return companyData.save();
-        }
-    } catch (error) {
-        throw error;
-    }
-}
+
 
 const loginCompany = async (data) => {
     try {
@@ -35,6 +23,5 @@ const loginCompany = async (data) => {
 }
 
 module.exports = {
-    registerCompany,
     loginCompany,
 }

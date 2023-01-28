@@ -1,7 +1,7 @@
 const sendFailResponse = require('../utils/helper/failResponse');
 const { registerCompanyBL,
     loginCompanyBL,
-} = require('../services/BL/index')
+} = require('../services/BL/companyBL')
 
 const registerCompanyController = async (req, res, next) => {
 
@@ -25,5 +25,5 @@ const loginCompanyController = async (req, res, next) => {
 
 module.exports = {
     registerCompanyController,
-    loginCompanyController,
+    loginCompanyController
 }
