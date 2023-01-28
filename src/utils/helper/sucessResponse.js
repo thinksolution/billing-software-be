@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     }
     const response = {
         success: true,
-        displayMessage: res.locals.rootdata || "",
+        displayMessage: "success",
         message: msg,
         description: "NAX-0000",
         resultObj: res.locals.rootdata || {}

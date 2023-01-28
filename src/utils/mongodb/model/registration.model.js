@@ -43,5 +43,5 @@ const schema = new Schema({
     }
 },{timestamps: true});   //Updated at created at time 
 
-const _model = model("companies", schema);//COmpany
+const _model = model("company", schema);//COmpany
 module.exports = _model

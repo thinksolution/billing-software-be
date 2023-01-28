@@ -25,5 +25,5 @@ const loginCompanyController = async (req, res, next) => {
 
 module.exports = {
     registerCompanyController,
-    loginCompanyController,
+    loginCompanyController
 }

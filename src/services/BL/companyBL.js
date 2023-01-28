@@ -6,19 +6,17 @@ const {tokenVerifier} = require('../../utils/helper/tokenGenerator')
 const {
     registerCompany,
     getCompanyByEmail,
-    loginCompany,getTokenByEmail
+    loginCompany,
+    getTokenByEmail,
 } = require('../DAL/companyDL')
 
 
 const registerCompanyBL = async (req, res) => {
 
     try {
-        console.log('BL hit')
         let data = req.body
         const userExist = await getCompanyByEmail(data)
-        console.log(userExist)
         if(userExist.length>0){
-            console.log('ue hit')
             return res.status(200).send("User Already Exist")
         }
         data.password = await encryptText(data.password)
@@ -36,13 +34,11 @@ const loginCompanyBL = async (req, res) => {
     try {
         const data = req.body;
         const token = await getTokenByEmail(data);
-        console.log('bl',token)
         const authorized = tokenVerifier(token);
         if(!authorized.length>0){
             return res.status('401').send('Unauthorized User');
         }
         const loginCompanyResult = await loginCompany(data)
-        console.log("loginCompanyResult", loginCompanyResult)
         res.locals.rootdata = loginCompanyResult;
     } catch (error) {
         throw error;

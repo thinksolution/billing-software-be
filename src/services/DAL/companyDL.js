@@ -26,13 +26,11 @@ const getTokenByEmail = async (data) => {
 const loginCompany = async (data) => {
   try {
     const loginResult = await RegistrationModel.find({ email: data.email });
-    console.log("loginResult", loginResult);
     if (loginResult.length != 0) {
       const passwordMatch = await decryptText(
         data.password,
         loginResult[0].password
       );
-      console.log("passwordMatch", passwordMatch);
       if (passwordMatch) {
         return loginResult;
       } else {
