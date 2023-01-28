@@ -1,8 +1,17 @@
-const CustomerModel = require('../../utils/mongodb/model/customer.registration')
+const AddCustomerModel = require('../../utils/mongodb/model/customer.registration')
+
+const getAllCustomerDAL = async () => {
+    try {
+        let getAllCustomerData = AddCustomerModel.find()
+        return getAllCustomerData;
+    } catch (error) {
+        throw error;
+    }
+}
 
 const addCustomerDAL = async (data) => {
     try {
-        let isCustomerExist = await CustomerModel.find({email : data.email } || {phoneNumber: data.phoneNumber})
+        let isCustomerExist = await AddCustomerModel.find({email : data.email } || {phoneNumber: data.phoneNumber})
         if (isCustomerExist.length > 0) {
             return {exist : "Customer already Added"}
         } else {
@@ -21,7 +30,7 @@ const updateCustomerDAL = async (data) => {
         //     lastName : data.lastName,
         //     phoneNumber : data.phoneNumber,
         let _id = data.id
-        let eidtCoustomerDetails = await CustomerModel.findByIdAndUpdate(_id, data, {new: true}.exe());
+        let eidtCoustomerDetails = await AddCustomerModel.findByIdAndUpdate(_id, data, {new: true}.exe());
         return eidtCoustomerDetails;
     } catch (error) {
         throw error;
@@ -30,5 +39,6 @@ const updateCustomerDAL = async (data) => {
 
 module.exports = {
     addCustomerDAL,
-    updateCustomerDAL
+    updateCustomerDAL,
+    getAllCustomerDAL
 }

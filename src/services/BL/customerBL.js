@@ -1,4 +1,4 @@
-const { addCustomerDAL, updateCustomerDAL } = require('../DAL/customerDAL')
+const { addCustomerDAL, updateCustomerDAL, getAllCustomerDAL } = require('../DAL/customerDAL')
 
 const addCustomerBL = async (req, res) => {
 
@@ -22,7 +22,17 @@ const updateCustomerBL = async (req, res) => {
     }
 }
 
+const getAllCustomerBL = async (req, res) => {
+
+    try {
+        let getCustomer = await getAllCustomerDAL()
+        res.locals.rootdata = getCustomer
+    } catch (error) {
+        throw error;
+    }
+}
 module.exports = {
     addCustomerBL,
-    updateCustomerBL
+    updateCustomerBL,
+    getAllCustomerBL
 }
