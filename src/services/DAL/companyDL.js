@@ -19,6 +19,7 @@ const getTokenByEmail = async (data) => {
   if (data !== undefined) {
     companyData = await RegistrationModel.find({ email: data.email });
   }
+  console.log(companyData)
   const result = companyData[0].registrationKey;
   
   return result;

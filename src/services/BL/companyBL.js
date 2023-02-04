@@ -36,6 +36,7 @@ const loginCompanyBL = async (req, res) => {
     try {
         const data = req.body;
         const token = await getTokenByEmail(data);
+        console.log(token)
         const authorized = tokenVerifier(token);
         if(!authorized){
             return res.status(401).send('Unauthorized User');
