@@ -9,13 +9,14 @@ const {
 const {
     addCustomerController,
     updateCustomerController,
-    getAllCustomerController
+    getAllCustomerController,
+    getCustomerByID
 } = require('../controller/customerController')
 
 router.post('/register', registerCompanyController, successResponseGenrator)
 router.post('/login', loginCompanyController, successResponseGenrator)
 router.post('/addcustomer', addCustomerController, successResponseGenrator)
 router.patch('/updatecustomer', updateCustomerController, successResponseGenrator)
-router.get('/customer', getAllCustomerController, successResponseGenrator)
-
+router.get('/customers', getAllCustomerController, successResponseGenrator)
+router.get('/customer',getCustomerByID,successResponseGenrator)
 module.exports = router;

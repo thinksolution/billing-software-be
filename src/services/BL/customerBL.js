@@ -1,4 +1,4 @@
-const { addCustomerDAL, updateCustomerDAL, getAllCustomerDAL } = require('../DAL/customerDAL')
+const { addCustomerDAL, updateCustomerDAL, getAllCustomerDAL,getCustomerByID } = require('../DAL/customerDAL')
 
 const addCustomerBL = async (req, res) => {
 
@@ -31,8 +31,21 @@ const getAllCustomerBL = async (req, res) => {
         throw error;
     }
 }
+const getCustomerByIDBL = async (req, res) => {
+
+    try {
+        let {customerId} = req.query;
+        console.log(customerId)
+        let result = await getCustomerByID(customerId)
+        res.locals.rootdata = result
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     addCustomerBL,
     updateCustomerBL,
-    getAllCustomerBL
+    getAllCustomerBL,
+    getCustomerByIDBL
 }
